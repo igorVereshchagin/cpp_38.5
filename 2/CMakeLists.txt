@@ -57,4 +57,8 @@ if (WIN32)
                 "${QT_INSTALL_PATH}/bin/Qt${QT_BIN}${DEBUG_SUFFIX}.exe"
                 "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
     endforeach (QT_BIN)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${QT_INSTALL_PATH}/resources/"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>/resources/")
 endif ()
